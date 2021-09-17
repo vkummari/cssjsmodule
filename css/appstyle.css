@@ -1,12 +1,14 @@
 .sections {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 @media (min-width: 1200px) {
     .sections {
         display: flex;
         flex-direction: row;
+        justify-content: center;
     }
 }
 
@@ -28,8 +30,16 @@ a {
     margin: 10px;
 }
 
+article {
+    margin: 10px;
+}
+
 .navigationItem {
     size: 3em;
     text-decoration: underline;
     color: blue;
+}
+
+.sectionHighlight {
+    background-color: orange;
 }
