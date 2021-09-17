@@ -1,1 +1,23 @@
+.sections {
+    display: flex;
+    flex-direction: column;
+}
 
+@media (min-width: 1200px) {
+    .sections {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.navigations {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1200px) {
+    .navigations {
+        display: flex;
+        flex-direction: row;
+    }
+}
