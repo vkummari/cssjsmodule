@@ -14,7 +14,7 @@ function buildNavigationFromArticles() {
     for (const tennisarticle of tennisarticles) {
         const tennisarticleheader = tennisarticle.querySelector("h2").innerText;
         // Create the navigation element and append to the fragment
-        const navigationElement = document.createElement('a');
+        const navigationElement = document.createElement('li');
         navigationElement.classList.add('navigationItem');
         navigationElement.innerText = tennisarticleheader;
         // Associate onClick event

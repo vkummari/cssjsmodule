@@ -12,21 +12,21 @@
     }
 }
 
-.navigations {
+ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 @media (min-width: 1200px) {
-    .navigations {
+    ul {
         display: flex;
         flex-direction: row;
         justify-content: center;
     }
 }
 
-a {
+ul li {
     margin: 10px;
 }
 
