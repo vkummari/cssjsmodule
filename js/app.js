@@ -45,9 +45,9 @@ function addOnClickEventToNaivgationItem(navigationElement) {
  */
 document.addEventListener('scroll', function(e) {
     t = setTimeout(function() {
-        const elementInViewPort = getElementInViewPort();
-        if (elementInViewPort != undefined) {
-            elementInViewPort.classList.add("sectionHighlight");
+        const articleInViewPort = getArticleInViewPort();
+        if (articleInViewPort != undefined) {
+            articleInViewPort.classList.add("sectionHighlight");
         }
 
     }, 300);
@@ -56,7 +56,7 @@ document.addEventListener('scroll', function(e) {
 /**
  * Fetches the current element in view port
  */
-function getElementInViewPort() {
+function getArticleInViewPort() {
     // Reset all elements backgroud color
     for (const tennisarticle of tennisarticles) {
         tennisarticle.classList.remove("sectionHighlight");
