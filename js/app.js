@@ -2,13 +2,13 @@
 const tennisarticles = document.querySelectorAll("article");
 
 document.addEventListener("DOMContentLoaded", function(event) {
-    buildNavigationFromArticles();
+    buildNavigationHeader();
 });
 
 /**
  * Builds the navigation menu based on the articles available on the page
  */
-function buildNavigationFromArticles() {
+function buildNavigationHeader() {
     // Create navigationFragment which will hold all anchor elements
     const navigationFragment = document.createDocumentFragment();
     for (const tennisarticle of tennisarticles) {
@@ -22,17 +22,21 @@ function buildNavigationFromArticles() {
         navigationFragment.appendChild(navigationElement);
     }
     document.getElementById("navigationsid").appendChild(navigationFragment);
-
+    //Once the navigation bar is build, put the articles section right below the navbar
+    const navBarDivHeight = this.document.getElementById("navbardiv").clientHeight;
+    document.getElementById("sectionsid").style.paddingTop = navBarDivHeight + 'px';
 }
 
 /**
  * 
- * Assoicates onClick event to Navigation Item 
+ * Associates onClick event to Navigation Item and scroll to that element
  */
 function addOnClickEventToNaivgationItem(navigationElement) {
     navigationElement.addEventListener("click", function(event) {
         event.preventDefault();
-        document.getElementById(navigationElement.innerText).scrollIntoView(true);
+        const navBarDivHeight = document.getElementById("navbardiv").clientHeight;
+        var topOfElement = document.querySelector('#' + navigationElement.innerText).offsetTop - navBarDivHeight;
+        window.scroll({ top: topOfElement, behavior: "smooth" });
     });
 }
 
@@ -58,12 +62,20 @@ function getElementInViewPort() {
         tennisarticle.classList.remove("sectionHighlight");
     }
     // Get the first element which is in the viewport
+    // Logic checks the article header element is right below the header
     for (const tennisarticle of tennisarticles) {
-        const h2Element = tennisarticle.firstElementChild;
-        var bounding = h2Element.getBoundingClientRect();
-
-        if (bounding.top >= 0 && bounding.left >= 0 && bounding.right <= (window.innerWidth || document.documentElement.clientWidth) && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+        const headerElement = tennisarticle.firstElementChild;
+        var headerBox = headerElement.getBoundingClientRect();
+        const navBarBottom = document.getElementById("navbardiv").getBoundingClientRect().bottom;
+        if (headerBox.top >= navBarBottom) {
             return tennisarticle;
         }
     }
 }
+/**
+ * When window resizes, start the sections right below the header
+ */
+window.addEventListener('resize', function() {
+    const navBarDivHeight = this.document.getElementById("navbardiv").clientHeight;
+    document.getElementById("sectionsid").style.paddingTop = navBarDivHeight + 'px';
+});
